@@ -27,7 +27,7 @@ public class Var02 {
 		System.out.println(num);
 		num=num2;				//[묵시적 형변환] 업캐스팅
 								//반대로 큰 데이터 타입을 작은 데이터 타입에 넣는것은 안됨
-		num2=(short)num;		//다운 캐스팅으로 가능
+		num2=(short)num;		//다운 캐스팅으로 가능(명시적 형 변환)
 		System.out.println(num);
 		System.out.println(num2);
 		System.out.println(num3);

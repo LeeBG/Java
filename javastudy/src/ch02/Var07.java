@@ -6,20 +6,18 @@ class Car{		//클래스 자료형
 	static String name = "소나타";
 	static String type = "승용차";
 }
-class Sonata extends Car{
-	
-}
+
 public class Var07 {
 	
 	public static void main(String[] args) {
-		Car sonata = new Car();
-		Car.power = 5000;
+		Car sonata = new Car();		//new >> Heap
+		
+		Car.power = 5000;		//static이라 Car를 자료형으로 가지는 모든 변수들이 같이 변함
 		
 		sonata.color = "하얀색";
 		sonata.name="소나타";
-		sonata.power=2000;
+		sonata.power=2000;		//static이라 Car를 자료형으로 가지는 모든 변수들이 같이 변함
 		sonata.type="승용차";
-		
 		
 		
 		System.out.println(Car.power);
