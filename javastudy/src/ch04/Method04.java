@@ -11,11 +11,18 @@ public class Method04 {
 		money = money + num;
 		
 	}
+	
+	int add2(int num) {
+		int money2 = money + num;
+		return money2;
+	}
 	//ctrl + shift + Enter >> auto Formmat
 	
 	public static void main(String[] args) {
 		Method04 m = new Method04();
 		m.add(50000);
-		System.out.println(m.money);
+		System.out.println(m.money);			//add
+		/*--------------------------------*/
+		System.out.println(m.add2(30000));		//add2
 	}
 }
