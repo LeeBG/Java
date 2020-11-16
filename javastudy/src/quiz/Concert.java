@@ -74,11 +74,11 @@ public class Concert {
 	public void reservation() {
 			System.out.print("\n좌석 구분 S(1) A(2) B(3) >>");
 			Scanner sc = new Scanner(System.in);
-			int n = Integer.parseInt(sc.nextLine());
-			if(n>4||n<1)
+			menu= Integer.parseInt(sc.nextLine());
+			if(menu>4||menu<1)
 				System.err.println("잘못 입력");
 			else
-				switch (n) {
+				switch (menu) {
 				case 1:
 					for(int i=0;i<10;i++)
 						System.out.print(sit[0][i]+"");
@@ -127,17 +127,17 @@ public class Concert {
 			for(int j=0;j<10;j++) {
 				System.out.print(sit[i][j]);
 			}
-			
+			System.out.println("");
 		}
 	}
 	public void cancle (){
 		System.out.print("\n좌석 구분 S(1) A(2) B(3) >>");
 		Scanner sc = new Scanner(System.in);
-		int n = Integer.parseInt(sc.nextLine());
-		if(n>4||n<1)
+		menu = Integer.parseInt(sc.nextLine());
+		if(menu>4||menu<1)
 			System.err.println("잘못 입력");
 		else
-			switch (n) {
+			switch (menu) {
 			case 1:
 				for(int i=0;i<10;i++)
 					System.out.println(sit[0][i]+"");
