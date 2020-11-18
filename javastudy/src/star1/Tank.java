@@ -1,17 +1,19 @@
 package star1;
 
-class Tank {
-	String name;
-	int hp;
-	int attack;
-	
-	public Tank(String n, int h, int a) {
-		name=n;
-		hp=h;
-		attack=a;
-	}
-	
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+class Tank extends StarUnit{
 	public Tank() {
-		
+		setName("탱크");
+		setAttack(30);
+		setHp(150);
+	}
+	public void upgrade() {			//업글
+		setAttack(getAttack()+2);
+		System.out.println(getName()+" 업그레이드 완료! attack :"+getAttack());
+		System.out.println("=====================");
 	}
 }

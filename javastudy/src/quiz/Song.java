@@ -1,5 +1,7 @@
 package quiz;
 
+
+//P.242 3¹ø¹®Á¦
 public class Song {
 	String title;
 	String artist;

@@ -1,5 +1,7 @@
 package quiz;
 
+
+//P.242 4¹ø¹®Á¦
 public class RectangleApp {
 
 	public static void main(String[] args) {

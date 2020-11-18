@@ -1,17 +1,15 @@
 package star1;
 
-class Dragoon {
-	String name;
-	int hp;
-	int attack;
-
+class Dragoon extends StarUnit{
 	public Dragoon() {
-	};
-
-	public Dragoon(String n, int h, int a) {
-		name = n;
-		hp = h;
-		attack = a;
-
+		setName("드라군");
+		setAttack(20);
+		setHp(120);
+	}
+	
+	public void upgrade() {			//업글
+		setAttack(getAttack()+2);
+		System.out.println(getName()+" 업그레이드 완료! attack :"+getAttack());
+		System.out.println("=====================");
 	}
 }

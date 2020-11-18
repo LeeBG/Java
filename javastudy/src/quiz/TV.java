@@ -1,5 +1,8 @@
 package quiz;
 
+
+
+//P.241 1번문제
 public class TV {
 	String manufacturer;
 	int year;
@@ -12,7 +15,7 @@ public class TV {
 	public TV() {}
 		
 	void show() {
-		System.out.println(manufacturer+"에서 만든"+year+"년형"+size+"인치 TV");
+		System.out.println(manufacturer+"에서 만든 "+year+"년형 "+size+"인치 TV");
 	}
 }
 

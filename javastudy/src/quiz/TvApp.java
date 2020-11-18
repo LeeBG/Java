@@ -1,5 +1,6 @@
 package quiz;
 
+//p241 1¹ø ¹®Á¦
 public class TvApp {
 
 	public static void main(String[] args) {
