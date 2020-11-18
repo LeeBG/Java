@@ -19,6 +19,7 @@ public class Rectangle {
 		System.out.println("("+x+","+y+")"+"에서 크기가 "+width+" x "+height+"인 사각형");
 	}
 	boolean contains(Rectangle r) {
-		return (this.height+this.y > r.height+r.y)&&(this.width+this.x > r.width+r.y)&&(this.x<r.x)&&(this.y<r.y);
+		return (this.height+this.y > r.height+r.y)&&(this.width+this.x > r.width+r.y)&&		//우측 끝지점
+				(this.x<r.x)&&(this.y<r.y);													//좌측시작지점
 	}
 }

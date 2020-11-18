@@ -1,10 +1,7 @@
 package star1;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+
 class Tank extends StarUnit{
 	public Tank() {
 		setName("ÅÊÅ©");

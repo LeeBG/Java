@@ -13,6 +13,7 @@ public class Star3App {
 		River r = new River();
 		Dragoon d = new Dragoon();
 		Zealot z = new Zealot();
+		
 		r.attack(d);
 		d.attack(r);
 		r.attack(d);
