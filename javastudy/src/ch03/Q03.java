@@ -33,18 +33,18 @@ public class Q03 {
 		
 	}
 	public static void little_triangle(int num) {
-		//증가
-		for (int i=0;i<num/2+1;i++) {	//높이를 입력받음
-			for(int j=0;j<2*i+1;j++) {
-				System.out.print("*");
-			}System.out.println();
-		}
-		//감소
-		for (int i=num/2+1;i<num;i++) {	//높이를 입력받음
-			for(int j=i/2;j>0;j-=2) {
-				System.out.print("*");	
+		
+		int i = 0;
+		
+		if(i<num/2) {
+			for(i=0;i<num/2;i++) {
+				for(int j=0;j<2*i+1;j++) {
+					System.out.print("*");
+				}	
+				System.out.println("");
 			}
-			System.out.println();
+		}else {
+			
 		}
 		
 	

@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class Input03 {
-
 	public static void main(String[] args) {
 		InputStream in = System.in;
 		//문자를 숫자로 받음
