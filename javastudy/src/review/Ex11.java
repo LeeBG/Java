@@ -1,0 +1,35 @@
+package review;
+
+
+// 상속은 데이터를 물려주는 것이 목적이 아니다
+// 만약 데이터를 물려주고 싶다면 콤포지션하면 된다.
+// 상속을 하는 이유는 다형성에 있다.
+// Type을 일치 시킴으로서 공통 모듈을 만들 수 있다.
+
+class 나무{
+	void start() {
+	}
+}
+class 나무의자 extends 나무{
+	@Override
+	void start() {
+		System.out.println("나무의자 사용");
+	}
+}
+class 나무책상 extends 나무{
+	@Override
+	void start() {
+		System.out.println("나무책상 사용");
+	}
+}
+public class Ex11 {
+
+	static void use(나무 u) {
+		u.start();
+	}
+	
+	public static void main(String[] args) {
+		use(new 나무책상());
+		use(new 나무의자());
+	}
+}
