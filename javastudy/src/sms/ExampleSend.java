@@ -15,7 +15,7 @@ public class ExampleSend {
 		String api_key = "NCSQLLSDEIEDE6PW";
 	    String api_secret = "HMUEOCENBSZFANVWZSABQDCUY4IMCW9P";
 	    Message coolsms = new Message(api_key, api_secret);
-
+	    
 	    // 4 params(to, from, type, text) are mandatory. must be filled
 	    HashMap<String, String> params = new HashMap<String, String>();
 	    params.put("to", to);

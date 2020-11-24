@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Font;
+import javax.swing.JComboBox;
 
 
 public class Swing04 extends JFrame {
@@ -36,6 +37,9 @@ public class Swing04 extends JFrame {
 		lab1.setBounds(12, 149, 57, 15);
 		lab2.setBounds(145, 10, 57, 15);
 		lab3.setBounds(276, 116, 57, 15);
+		
+		JComboBox comboBox = new JComboBox();
+		getContentPane().add(comboBox, BorderLayout.SOUTH);
 	}
 	private void initBatch() {
 		jp1.add(btn1);
@@ -53,6 +57,7 @@ public class Swing04 extends JFrame {
 		
 		setVisible(true);
 	}
+	
 	public static void main(String[] args) {
 		new Swing04();
 	}
