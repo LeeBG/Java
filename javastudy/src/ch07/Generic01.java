@@ -13,7 +13,7 @@ class Dog{
 	String name = "안녕";
 }
 // 데이터 타입이 가변적 / 데이터 타입을 모르는 상황 >> generic <>
-public class generic01 {
+public class Generic01 {
 
 	public static void main(String[] args) {
 		ResponseDto <Integer> dto= new ResponseDto();		//<안에 wrapper 클래스>

@@ -22,6 +22,7 @@ public class Lotto {
 					i--;
 					continue loop;
 				}			
+				
 			}
 			ball[i]=number[index];
 			System.out.println(ball[i]+" ");
@@ -33,7 +34,7 @@ public void selectionSort(int a[]) {		//선택정렬 오름차순
         for(int i=0; i<a.length-1; i++) {
             int min = i;
             for(int j=i+1; j<a.length; j++) { 
-                if(a[j] < a[min]) { //오름차순 
+                if(a[j] < a[min]) { 		//오름차순 
                     min = j;
                 }
             }
