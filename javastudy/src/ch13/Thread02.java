@@ -11,7 +11,7 @@ public class Thread02 {
 		//스레드 객체 생성
 		//타겟 설정
 		//실행하기
-		Thread t1 = new Thread(new NewThread());
+		Thread t1 = new Thread(new NewThread());		//타겟설정
 		t1.start();
 		
 		NewThread t2 = new NewThread();		//스레드 객체
