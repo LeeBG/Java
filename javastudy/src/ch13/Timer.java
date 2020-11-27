@@ -81,7 +81,6 @@ class TimerSecond implements Runnable {
 	public TimerSecond(JLabel timersecond) {
 		this.timersecond = timersecond;
 	}
-
 	@Override
 	public void run() {
 		int n = 0;
