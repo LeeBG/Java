@@ -17,7 +17,7 @@ public class SocketClient {
 	
 	public SocketClient() {
 		try {
-			socket = new Socket("localhost",20000);
+			socket = new Socket("192.168.55.55",20000);
 			SocketThread st = new SocketThread();
 			st.start();
 			
