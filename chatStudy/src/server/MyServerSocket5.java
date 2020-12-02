@@ -81,7 +81,7 @@ public class MyServerSocket5 {
 			String gubun[] = input.split(":");
 			if(gubun[0].equals(Chat.ALL)) {
 				for(int i = 0;i<vc.size();i++) {
-					if(vc.get(i) != this) {
+					if(vc.get(i) != this) {			//자신을 제외한 모두에게
 						vc.get(i).writer.println(id+"-->"+gubun[1]);
 						vc.get(i).writer.flush();
 					}
