@@ -1,6 +1,8 @@
 package chat;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -31,9 +33,6 @@ public class ChatServer {
 			while(true) {
 				Socket socket = serverSocket.accept();		//클라이언트 연결대기
 				System.out.println(TAG+"클라이언트 연결 완료");
-				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				id = reader.readLine();			//아이디 받기
-				System.out.println("id = "+id);
 				ClientInfo clientInfo = new ClientInfo(socket,id);
 				clientInfo.start();
 				vc.add(clientInfo);
@@ -70,8 +69,11 @@ public class ChatServer {
 
 		@Override
 		public void run() {			//직접구현
+			
 			//메시지를 읽어서 써 줌
 			try {
+
+				id = reader.readLine();			//아이디 받기
 				String input=null;
 				while((input = reader.readLine())!=null) {
 					routing(input);
@@ -86,6 +88,12 @@ public class ChatServer {
 			String gubun[] = input.split("]");
 			
 			if((gubun[0].substring(1)).equals(ChatProtocol.ALL)) {
+				try {
+					FileOutputStream output = new FileOutputStream("C:\\out.txt",true);
+					output.write((input+"\n").getBytes());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				for(int i =0;i<vc.size();i++) {
 					if(vc.get(i) != this) {
 						vc.get(i).writer.append(gubun[1]+"\n");
@@ -96,7 +104,7 @@ public class ChatServer {
 				
 				String tempId = gubun[1].substring(1);
 				String tempMsg = gubun[2];
-				
+				System.out.println(tempId);
 				for(int i = 0 ; i <vc.size();i++) {
 					if(vc.get(i).id.equals(tempId+tempId)) {
 						System.out.println(gubun[2]);
