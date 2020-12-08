@@ -1,35 +1,28 @@
 package chat;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.Vector;
-import chat.ChatProtocol;
 
 public class ChatServer {
 
 	private ServerSocket serverSocket;
 	private static final  String TAG = "ChatServer : ";
 	private Vector<ClientInfo> vc;						//연결된 클라이언트 (소켓)을 담는 컬렉션
-	private String id;
+	private String id;									//스레드에서 받는 아이디 값
 	public ChatServer() {
-		/*
-		 * 
-		 */
 		try {
-			Scanner sc = new Scanner(System.in);
+
 			vc = new Vector<>();
 			serverSocket = new ServerSocket(10000);
 			System.out.println(TAG+"클라이언트 연결 대기중");
-			//↓↓↓↓ 메인스레드의 역할 ↓↓↓↓
 			
+			//↓↓↓↓ 메인스레드의 역할 ↓↓↓↓
 			while(true) {
 				Socket socket = serverSocket.accept();		//클라이언트 연결대기
 				System.out.println(TAG+"클라이언트 연결 완료");
@@ -66,17 +59,15 @@ public class ChatServer {
 		 * 재전송한다.
 		 */
 		
-
 		@Override
-		public void run() {			//직접구현
-			
+		public void run() {			//직접구현		
 			//메시지를 읽어서 써 줌
 			try {
-
-				id = reader.readLine();			//아이디 받기
+				id=null;
+				id = reader.readLine();		//아이디 받기
 				String input=null;
 				while((input = reader.readLine())!=null) {
-					routing(input);
+					routing(input);			//프로토콜 라우팅
 				}
 				
 			} catch (IOException e) {
@@ -90,13 +81,14 @@ public class ChatServer {
 			if((gubun[0].substring(1)).equals(ChatProtocol.ALL)) {
 				try {
 					FileOutputStream output = new FileOutputStream("C:\\out.txt",true);
-					output.write((input+"\n").getBytes());
+					output.write(("["+this.id+"]"+gubun[1]+"\n").getBytes());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				for(int i =0;i<vc.size();i++) {
+					
 					if(vc.get(i) != this) {
-						vc.get(i).writer.append(gubun[1]+"\n");
+						vc.get(i).writer.append("["+this.id+"]"+gubun[1]+"\n");
 						vc.get(i).writer.flush();
 					}
 				}
@@ -104,11 +96,10 @@ public class ChatServer {
 				
 				String tempId = gubun[1].substring(1);
 				String tempMsg = gubun[2];
-				System.out.println(tempId);
+				
 				for(int i = 0 ; i <vc.size();i++) {
-					if(vc.get(i).id.equals(tempId+tempId)) {
-						System.out.println(gubun[2]);
-						vc.get(i).writer.append(tempMsg+"\n");
+					if(vc.get(i).id.equals(tempId)) {
+						vc.get(i).writer.append("["+this.id+"]"+tempMsg+"\n");
 						vc.get(i).writer.flush();
 					}
 				}
@@ -116,7 +107,6 @@ public class ChatServer {
 			}		
 		}
 	}
-	
 	public static void main(String[] args) {
 		new ChatServer();
 	}

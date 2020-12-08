@@ -21,37 +21,35 @@ import javax.swing.JTextField;
 
 public class ChatClient extends JFrame {
 
-	private ChatClient chatClient = this; // 자신의 context를 만들기 습관
+	private ChatClient chatClient = this; 		// 자신의 context를 만들기 습관
 	private final static String TAG = "ChatClient : ";
 
-	private final static short PORT = 10000; // 포트번호
-	private Socket socket; // 소켓
+	private final static short PORT = 10000; 	// 포트번호
+	private Socket socket; 						// 소켓
 	private PrintWriter writer;
 	private BufferedReader reader;
-	private String id;
-	private int count;						//id최초 생성 카운트
-	
-	private JButton btnConnect, btnSend;
-	private JTextField tfHost, tfChat;
+	private int countId;						//id최초 생성 카운트 = 0이다.
+	private JButton btnConnect, btnSend;		//버튼
+	private JTextField tfHost, tfChat;			
 	private JTextArea taChatList;
 	private ScrollPane scrollPane;
 	private JPanel topPanel, bottomPanel;
 
-	public ChatClient() {
+	public ChatClient() {						//JFanel 생성자
 		init();
 		setting();
 		batch();
 		listener();
 		setVisible(true);
 	}
-
+	
 	private void init() {
-		count=0;
+		countId=0;
 		btnConnect = new JButton("connect");
 		btnSend = new JButton("send");
-		tfHost = new JTextField("127.0.0.1", 20); // ip,size
+		tfHost = new JTextField("127.0.0.1", 20); 	// 주소, Font size
 		tfChat = new JTextField("", 20);
-		taChatList = new JTextArea(10, 30); // row, column
+		taChatList = new JTextArea(20, 30); 		// row, column
 		scrollPane = new ScrollPane();
 		topPanel = new JPanel();
 		bottomPanel = new JPanel();
@@ -64,6 +62,8 @@ public class ChatClient extends JFrame {
 		setLocationRelativeTo(null);// 실행했을때 창이 가운데
 		taChatList.setBackground(Color.ORANGE);
 		taChatList.setForeground(Color.BLUE);
+		if(countId==0)
+			btnSend.setEnabled(false);
 	}
 
 	private void batch() {
@@ -97,22 +97,21 @@ public class ChatClient extends JFrame {
 	private void send() {			//writer쓰레드
 
 		
-		String chat = tfChat.getText();
+		String chat = tfChat.getText();		//메시지 받기
 		
-		if(count==0)
+		if(countId==0)
 		{
-			count++;
-			id = chat;
-			writer.append(id);
+			taChatList.append("[ID] " + chat + "\n");
+			writer.append(chat+"\n");
 			writer.flush();
-			
+			countId++;
+		}else if(countId > 0) {
+			// 1번 taChatList 뿌리기
+			taChatList.append("[내메시지] " + chat + "\n");
+			// 2번 서버로 전송
+			writer.append(chat+"\n");
+			writer.flush();
 		}
-		// 1번 taChatList 뿌리기
-		taChatList.append("[내메시지] " + chat + "\n");
-		
-		// 2번 서버로 전송
-		writer.append(chat+"\n");
-		writer.flush();
 		// 3번 tfChat 비우기
 		tfChat.setText("[ALL]");
 	}
@@ -125,17 +124,16 @@ public class ChatClient extends JFrame {
 			socket = new Socket(host, PORT);
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			writer = new PrintWriter(socket.getOutputStream());
-			if(count == 0)
+			if(countId == 0)		//아이디 카운트가  0이면 id를 받는다.
 				taChatList.append("아이디를 입력하세요"+"\n");
-			
+			btnSend.setEnabled(true);
 			//메시지 받는거만 
 			ReaderThread rt = new ReaderThread();
-			rt.start();
-			
-			
+			rt.start();	
 		} catch (Exception e1) {
 			System.err.println(TAG + "서버 연결 에러" + e1.getMessage());
 		}
+		
 	}
 
 	class ReaderThread extends Thread {
@@ -143,18 +141,16 @@ public class ChatClient extends JFrame {
 		@Override
 		public void run() {
 			// reader.readLine(""); 사용
-
 			try {
-				String line = null;
+				String line = null;				
 				while((line = reader.readLine())!=null) {
-					taChatList.append("["+id+"]"+line+"\n");
+					taChatList.append(line+"\n");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
-
 	public static void main(String[] args) {
 		new ChatClient();
 	}
