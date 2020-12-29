@@ -21,8 +21,7 @@ public class Lotto {
 				if((index+1)==ball[j]) {	//중복발생
 					i--;
 					continue loop;
-				}			
-				
+				}				
 			}
 			ball[i]=number[index];
 			System.out.println(ball[i]+" ");

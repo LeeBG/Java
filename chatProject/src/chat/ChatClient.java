@@ -26,7 +26,7 @@ public class ChatClient extends JFrame {
 
 	private final static short PORT = 10000; 	// 포트번호
 	private Socket socket; 						// 소켓
-	private PrintWriter writer;
+	private PrintWriter writer;					//다른 스트림과 다르게 바이트출력스트림과 문자 출력 스트림을 가지고 객체를 생성할수있는 클래스이다.
 	private BufferedReader reader;
 	private int countId;						//id최초 생성 카운트 = 0이다.
 	private JButton btnConnect, btnSend;		//버튼
